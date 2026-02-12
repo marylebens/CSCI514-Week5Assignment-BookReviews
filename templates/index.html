@@ -8,16 +8,19 @@
 
 <body>
     <h1>Book Reviews</h1>
-
+<div class="container mt-4"></div>
     <!-- Add a div to input book data -->
-    <div id="addBook">
-        <h2>Add a Book</h2>
-        <input type="text" id="bookTitle" placeholder="Book Title">
-        <input type="text" id="publicationYear" placeholder="Publication Year">
-        <input type="text" id="author" placeholder="Author">
-        <button onclick="addBook()">Add</button>
+    <div class="card" id="addBook">
+        <div class="card-header bg-primary text-white">
+        <h2>Add a Book</h2></div>
+        <div class="card-body">
+            <div class="mb-3"><input type="text" id="bookTitle" placeholder="Book Title"></div>
+            <div class="mb-3"></div><input type="text" id="publicationYear" placeholder="Publication Year"></div>
+            <div class="mb-3"></div><input type="text" id="author" placeholder="Author"></div>
+            <button onclick="addBook()">Add</button>
+        </div>
     </div>
-
+</div>
     <!-- Display books in this div -->
     <div id="bookList">
         <!-- Book data will be displayed here dynamically -->
