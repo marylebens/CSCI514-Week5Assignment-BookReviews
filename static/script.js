@@ -47,9 +47,10 @@ function displayBooks() {
     books.forEach(book => {
         const bookElement = document.createElement('div');
         bookElement.innerHTML = `
-            <h2>Added Successfully :${book.title}</h2>
-            <p>Publication Year: ${book.publication_year}</p>
-            <p>Author: ${book.author}</p>
+        <div class="card-body">
+            <h5 class="card-title">${book.title}</h2>
+            <p class="card-text"><strong>Publication Year: ${book.publication_year}</strong></p>
+            <p class="card-text"><strong>Author: ${book.author}</strong></p>
         `;
         bookList.appendChild(bookElement);
     });
