@@ -68,7 +68,7 @@ function displayBooks() {
     });
 }
 
-// Function to fetch and display all books from the server
+/// Function to fetch and display all books from the server
 function showAllBooks() {
     fetch('/api/books')
         .then(response => response.json())
@@ -76,25 +76,30 @@ function showAllBooks() {
             const bookList = document.getElementById('allbooks');
             bookList.innerHTML = '';
             
-            data.books.forEach(book => {
-                const bookElement = document.createElement('div');
-                bookElement.className = 'col-md-4 mb-3';
-                bookElement.innerHTML = `
-                    <div class="card h-100">
-                        ${book.image_url ? `<img src="${book.image_url}" class="card-img-top" alt="${book.title}" style="height: 300px; object-fit: cover;">` : ''}
-                        <div class="card-body">
-                            <h5 class="card-title">${book.title}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">${book.author}</h6>
-                            <p class="card-text">
-                                <span class="badge badge-info">${book.publication_year}</span>
-                            </p>
+            if (data.books && data.books.length > 0) {
+                data.books.forEach(book => {
+                    const bookElement = document.createElement('div');
+                    bookElement.className = 'col-md-4 mb-3';
+                    bookElement.innerHTML = `
+                        <div class="card h-100">
+                            ${book.image_url ? `<img src="${book.image_url}" class="card-img-top" alt="${book.title}" style="height: 300px; object-fit: cover;">` : '<div class="card-img-top bg-secondary" style="height: 300px; display: flex; align-items: center; justify-content: center;"><span class="text-white">No Image</span></div>'}
+                            <div class="card-body">
+                                <h5 class="card-title">${book.title}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">${book.author}</h6>
+                                <p class="card-text">
+                                    <span class="badge badge-info">${book.publication_year}</span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                `;
-                bookList.appendChild(bookElement);
-            });
+                    `;
+                    bookList.appendChild(bookElement);
+                });
+            } else {
+                bookList.innerHTML = '<div class="col-12"><p class="alert alert-info">No books found in the database.</p></div>';
+            }
         })
         .catch(error => {
             console.error('Error fetching all books:', error);
+            document.getElementById('allbooks').innerHTML = '<div class="col-12"><p class="alert alert-danger">Error loading books. Check the console for details.</p></div>';
         });
 }
