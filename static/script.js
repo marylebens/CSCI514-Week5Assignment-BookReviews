@@ -62,14 +62,21 @@ function showAllBooks() {
         .then(response => response.json())
         .then(data => {
             const bookList = document.getElementById('allbooks');
-            bookList.innerHTML = ''; // Clear existing book list
-            console.log(data)
-            data.books.forEach(book => { // Access the 'books' key in the JSON response
+            bookList.innerHTML = '';
+            
+            data.books.forEach(book => {
                 const bookElement = document.createElement('div');
+                bookElement.className = 'col-md-4 mb-3';
                 bookElement.innerHTML = `
-                    <h2>${book.title}</h2>
-                    <p>Publication Year: ${book.publication_year}</p>
-                    <p>Author: ${book.author}</p>
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${book.title}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${book.author}</h6>
+                            <p class="card-text">
+                                <span class="badge bg-info">${book.publication_year}</span>
+                            </p>
+                        </div>
+                    </div>
                 `;
                 bookList.appendChild(bookElement);
             });
@@ -78,4 +85,3 @@ function showAllBooks() {
             console.error('Error fetching all books:', error);
         });
 }
-
