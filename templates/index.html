@@ -7,6 +7,11 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Book Review System</span>
+    </div>
+</nav>
     <h1>Book Reviews</h1>
 <div class="container mt-4"></div>
     <!-- Add a div to input book data -->
@@ -29,9 +34,11 @@
     <button id="showBooksButton" onclick="showAllBooks()">Show All Books</button>
 
     <!-- Display books in this div -->
-    <div id="allbooks">
-        <!-- Book data will be displayed here dynamically -->
-    </div>
+<div class="container mt-4">
+    <h2>All Books</h2>
+    <button class="btn btn-success mb-3" onclick="showAllBooks()">Show All Books</button>
+    <div class="row" id="allbooks"></div>
+</div>
 
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
